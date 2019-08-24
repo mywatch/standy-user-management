@@ -1,10 +1,10 @@
 (function() {
-    //Initialize Firebase
+    //Initialize Firebase [here] {https://support.google.com/firebase/answer/7015592?hl=en}
     const firebaseConfig = {
         apiKey: "",
         authDomain: "",
         databaseURL: "",
-        projectId: "standy-user-management",
+        projectId: "",
         storageBucket: "",
         messagingSenderId: "",
         appId: ""
@@ -34,38 +34,30 @@
         // URL you want to redirect back to. The domain (www.example.com) for this
         // URL must be whitelisted in the Firebase Console.
         url: 'https://standy.firebaseapp.com/',
-        handleCodeInApp: false,
-        // iOS: {
-        //   bundleId: 'com.example.ios'
-        // },
-        // android: {
-        //   packageName: 'com.example.android',
-        //   installApp: true,
-        //   minimumVersion: '12'
-        // },
-        //dynamicLinkDomain: 'example.page.link'
+        handleCodeInApp: true,
       };
-    
-    btnSignUp.addEventListener('click', e=> {
+
+  btnSignUp.addEventListener('click', e=> {
         // Get email and pass
         //TODO: CHECK FOR REAL EMAIL
         const email = txtEmail.value;
         const pass = txtPassword.value;
         const auth = firebase.auth();
         //Sign in
-        //const promise = auth.createUserWithEmailAndPassword(email, pass);
-        //promise.catch(e => console.log(e.message));
-        
+        // const promise = auth.createUserWithEmailAndPassword(email, pass);
+        // promise.catch(e => console.log(e.message));
+
         firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
             .then(function() {
-            // The link was successfully sent. Inform the user.
-            // Save the email locally so you don't need to ask the user for it again
-            // if they open the link on the same device.
-            window.localStorage.setItem('emailForSignIn', email);
-            console.log('Please check your email for access')
+                // The link was successfully sent. Inform the user.
+                // Save the email locally so you don't need to ask the user for it again
+                // if they open the link on the same device.
+                window.localStorage.setItem('emailForSignIn', email);
+                alert('Please check your email for verification link');
+                console.log('Please check your email for access');
         })
         .catch(function(error) {
-            // Some error occurred, you can inspect the code: error.code
+            console.log('Email send has error.');
         });
     });
 
