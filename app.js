@@ -37,7 +37,7 @@
         handleCodeInApp: true,
       };
 
-    btnSignUp.addEventListener('click', e=> {
+  btnSignUp.addEventListener('click', e=> {
         // Get email and pass
         //TODO: CHECK FOR REAL EMAIL
         const email = txtEmail.value;
